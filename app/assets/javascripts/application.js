@@ -20,30 +20,31 @@
 $(function() {
 		var params = {};
 
-    $( ".draggable" ).draggable({ 
-    	snap: true,
-    	drag: function() {
-        params = {
-        	id: $(this).data('garmentId'),
-					profileID: $(this).data('profileId'),
-					name: $(this).data('name')
-				};      
+		$( ".draggable" ).draggable({ 
+			snap: true,
+			drag: function() {
+				params = {
+					closet: {
+						profile_id: $('#garment').data('profile-id'),
+						name: $(this).data('closet'),
+						garment_id: $(this).data('garment-id')
+					}
+				};
 			}
-   	});
+		});
 
-    $( ".column-style" ).droppable({
-      activeClass: "ui-state-default",
-      hoverClass: "ui-state-hover",
-      drop: function( event, ui ) {
-      	var profileID = $('#garment').data('profile-id');
-        params.method = "update";
-      	$.ajax({
-      		method: "get",
-      		url:"/closets/update/" + profileID,
-      		data: $.param(params)
-     		});
-        // console.log('hi');
-        // console.log($(this).data('index'));
-      }
-    });
+		$( ".column-style" ).droppable({
+			activeClass: "ui-state-default",
+			hoverClass: "ui-state-hover",
+			drop: function( event, ui ) {
+				var $drag = $(this),
+						profileID = $('#garment').data('profile-id');
+
+				$.ajax({
+					method: "post",
+					url: '/closets/'+profileID+'/update/',
+					data: $.param(params)
+				});
+			}
+		});
  });

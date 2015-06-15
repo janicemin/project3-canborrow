@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
 
 	def index
 		@profiles = Profile.all
+		@profile = Profile.find(current_user.id)
 		@garment = Garment.new
 	end
 
@@ -40,7 +41,7 @@ class ProfilesController < ApplicationController
 	def destroy
 		@profile = Profile.find(params[:id])
 		@profile.destroy
-		redirect_to profiles_path
+		redirect_to @profile
 	end
 
 	private

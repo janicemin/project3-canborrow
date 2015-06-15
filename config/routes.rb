@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root "profiles#index"
   resources :profiles
   resources :garments
+  post '/closets/:id/update', to: 'closets#update#'
   resources :closets do
     resources :garments, shallow: true
 end

@@ -1,5 +1,4 @@
 class ClosetsController < ApplicationController
-
 	def index
 		@closets = Closet.all
 	end
@@ -26,17 +25,29 @@ class ClosetsController < ApplicationController
 	end
 
 	def update
-		# params[:profileID]
-		# params[:garmentID]
-		@closet = Closet.find(params[:id])			
+		# params[:profile_id]
+		# closet_params.garment_id
+		@closet = Closet.find(params[:id])
+
 		if @closet.update(closet_params)
 			redirect_to profile_path(@closet.profile)
 		else
 			render :new
 		end
-			respond_to do |format|
-				format.json {render :nothing}
+
+		# Due to having too many 1-1 associations, to reduce the number of required model updates,
+		# we're temporarily making this a toggle. If the record exists then delete it, otherwise create it.
+		if defined?(closet_params.garment_id)
+			if Borrow.exists?([profile_id: params[:id], garment_id: closet_params.garment_id])
+				Borrow.delete([profile_id: params[:id], garment_id: closet_params.garment_id])
+			else
+				@borrow = Borrow.new({ profile_id: params[:id], garment_id: closet_params.garment_id }).save();
 			end
+		end
+
+		if !request.xhr?
+			return
+		end
 	end
 
 	def destroy
@@ -47,7 +58,7 @@ class ClosetsController < ApplicationController
 
 	private
 	def closet_params
-		params.require(:closet).permit(:name, :profileID, :garmentID)
+		params.require(:closet).permit(:name, :profile_id)
 	end
 
 end

@@ -9,7 +9,9 @@
 <%= button_to "borrow", borrows_path(borrow: { garment_id: garment.id}) %>
 <% garment_url = garment.garment_url %>
 <% image_url = garment.background_url %>
-<%= image_tag(image_url, class: "draggable", "data-garment-id": garment.id, "data-name": @profile.closet.name ) %>
+
+<img class="draggable" src="<%=image_url%>" data-closet="<%=@closet.name%>" data-garment-id="<%=garment.id%>" />
+<%#= image_tag(image_url, class: "draggable", "data-garment-id": garment.id, "data-name": 'hi') %>
 <% end %>
 </div>
 
