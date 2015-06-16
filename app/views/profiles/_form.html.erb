@@ -1,37 +1,41 @@
-<br>
-<br>
-<br>
-<br><div class = "garment-add">
-<h1>Tell Me About Your Garment and Add It To Your Closet</h1>
-<%= form_for @garment do |f| %>
-	<%= f.label :garment_url %>
-	<%= f.text_field :garment_url %>
+<br />
+<br />
+<br />
+<br />
 
-	<br>
-	<%= f.label :background_url %>
-	<%= f.text_field :background_url %>
-	</br>
+<div class = "garment-add">
+	<h1>Tell Me About Your Garment and Add It To Your Closet</h1>
+	<%= form_for @garment do |f| %>
+		<%= f.label :garment_url %>
+		<%= f.text_field :garment_url %>
 
-	<br>
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-	</br>
+		<br />
 
-	<br>
-	<%= f.label :garment_type %>
-	<%= f.text_field :garment_type %>
-	</br>
+		<%= f.label :background_url %>
+		<%= f.text_field :background_url %>
 
-	<br>
-	<%= f.label :size %>
-	<%= f.text_field :size %>
-	</br>
+		<br /><br />
 
-	<br>
-	<%= f.label :gender %>
-	<%= f.text_field :gender%>
-	</br>
-	<%= f.submit %>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
 
+		<br /><br />
+
+		<%= f.label :garment_type %>
+		<%= f.text_field :garment_type %>
+
+		<br /><br />
+
+		<%= f.label :size %>
+		<%= f.text_field :size %>
+
+		<br /><br />
+
+		<%= f.label :gender %>
+		<%= f.text_field :gender%>
+
+		<br />
+
+		<%= f.submit %>
 	<% end %>
 </div>
