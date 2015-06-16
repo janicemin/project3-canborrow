@@ -27,6 +27,7 @@ class ClosetsController < ApplicationController
 	def update
 		# params[:profile_id]
 		# closet_params.garment_id
+		puts "Janice here i am"
 		@closet = Closet.find(params[:id])
 
 		if @closet.update(closet_params)

@@ -44,7 +44,9 @@ $(function() {
 					method: "post",
 					url: '/closets/'+profileID+'/update/',
 					data: $.param(params)
-				});
+				}).done(function(response, status, request){
+  console.dir(request);
+});
 			}
 		});
  });

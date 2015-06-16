@@ -12,12 +12,12 @@ NULLCMD = :
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /home/kchiu/.rbenv/versions/2.2.2/include/ruby-2.2.0
+topdir = /Users/janicemin/.rvm/rubies/ruby-2.2.0/include/ruby-2.2.0
 hdrdir = $(topdir)
-arch_hdrdir = /home/kchiu/.rbenv/versions/2.2.2/include/ruby-2.2.0/x86_64-linux
+arch_hdrdir = /Users/janicemin/.rvm/rubies/ruby-2.2.0/include/ruby-2.2.0/x86_64-darwin14
 PATH_SEPARATOR = :
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = $(DESTDIR)/home/kchiu/.rbenv/versions/2.2.2
+prefix = $(DESTDIR)/Users/janicemin/.rvm/rubies/ruby-2.2.0
 rubysitearchprefix = $(rubylibprefix)/$(sitearch)
 rubyarchprefix = $(rubylibprefix)/$(arch)
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
@@ -31,8 +31,8 @@ rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20150515-19199-z5nhlj
-sitelibdir = $(DESTDIR)./.gem.20150515-19199-z5nhlj
+sitearchdir = $(DESTDIR)./.gem.20150615-44135-1i8zlih
+sitelibdir = $(DESTDIR)./.gem.20150615-44135-1i8zlih
 sitedir = $(rubylibprefix)/site_ruby
 rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
@@ -65,10 +65,10 @@ archdir = $(rubyarchdir)
 
 CC = gcc
 CXX = g++
-LIBRUBY = $(LIBRUBY_A)
+LIBRUBY = $(LIBRUBY_SO)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
-LIBRUBYARG_SHARED = -Wl,-R$(libdir) -L$(libdir) 
-LIBRUBYARG_STATIC = -Wl,-R$(libdir) -L$(libdir) -l$(RUBY_SO_NAME)-static
+LIBRUBYARG_SHARED = -l$(RUBY_SO_NAME)
+LIBRUBYARG_STATIC = -l$(RUBY_SO_NAME)-static -framework CoreFoundation
 empty =
 OUTFLAG = -o $(empty)
 COUTFLAG = -o $(empty)
@@ -77,30 +77,30 @@ RUBY_EXTCONF_H =
 cflags   =  $(optflags) $(debugflags) $(warnflags)
 optflags = -O3 -fno-fast-math
 debugflags = -ggdb3
-warnflags = -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat
-CCDLFLAGS = -fPIC
-CFLAGS   = $(CCDLFLAGS) $(cflags)  -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES $(ARCH_FLAG)
+warnflags = -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration -Wdivision-by-zero -Wdeprecated-declarations -Wextra-tokens
+CCDLFLAGS = -fno-common
+CFLAGS   = $(CCDLFLAGS) $(cflags)  -fno-common -pipe  -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
-CPPFLAGS = -DHAVE_XMLPARSEDOC -DHAVE_XSLTPARSESTYLESHEETDOC -DHAVE_EXSLTFUNCREGISTER -DHAVE_XMLHASFEATURE -DHAVE_XMLFIRSTELEMENTCHILD -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETPARSERSTRUCTUREDERRORS -I/media/windows/nginx/www/can-borrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-unknown-linux-gnu/libxslt/1.1.28/include -I/media/windows/nginx/www/can-borrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-unknown-linux-gnu/libxml2/2.9.2/include/libxml2 -I/media/windows/nginx/www/can-borrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-unknown-linux-gnu/libxml2/2.9.2/include/libxml2 -I/home/kchiu/.rbenv/versions/2.2.2/include  $(DEFS) $(cppflags) -DNOKOGIRI_LIBXML2_PATH\=\"/media/windows/nginx/www/can-borrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-unknown-linux-gnu/libxml2/2.9.2\" -DNOKOGIRI_LIBXML2_PATCHES\=\"0001-Revert-Missing-initialization-for-the-catalog-module.patch\ 0002-Fix-missing-entities-after-CVE-2014-3660-fix.patch\" -DNOKOGIRI_LIBXSLT_PATH\=\"/media/windows/nginx/www/can-borrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-unknown-linux-gnu/libxslt/1.1.28\" -DNOKOGIRI_LIBXSLT_PATCHES\=\"0001-Adding-doc-update-related-to-1.1.28.patch\ 0002-Fix-a-couple-of-places-where-f-printf-parameters-wer.patch\ 0003-Initialize-pseudo-random-number-generator-with-curre.patch\ 0004-EXSLT-function-str-replace-is-broken-as-is.patch\ 0006-Fix-str-padding-to-work-with-UTF-8-strings.patch\ 0007-Separate-function-for-predicate-matching-in-patterns.patch\ 0008-Fix-direct-pattern-matching.patch\ 0009-Fix-certain-patterns-with-predicates.patch\ 0010-Fix-handling-of-UTF-8-strings-in-EXSLT-crypto-module.patch\ 0013-Memory-leak-in-xsltCompileIdKeyPattern-error-path.patch\ 0014-Fix-for-bug-436589.patch\ 0015-Fix-mkdir-for-mingw.patch\"
+CPPFLAGS = -DHAVE_XMLPARSEDOC -DHAVE_XSLTPARSESTYLESHEETDOC -DHAVE_EXSLTFUNCREGISTER -DHAVE_XMLHASFEATURE -DHAVE_XMLFIRSTELEMENTCHILD -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETPARSERSTRUCTUREDERRORS -I/Users/janicemin/Desktop/project3-canborrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-apple-darwin14.1.0/libxslt/1.1.28/include -I/Users/janicemin/Desktop/project3-canborrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-apple-darwin14.1.0/libxml2/2.9.2/include/libxml2 -I/Users/janicemin/Desktop/project3-canborrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-apple-darwin14.1.0/libxml2/2.9.2/include/libxml2  -I/usr/local/opt/libyaml/include -I/usr/local/opt/readline/include -I/usr/local/opt/libksba/include -I/usr/local/opt/openssl/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags) -DNOKOGIRI_LIBXML2_PATH\=\"/Users/janicemin/Desktop/project3-canborrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-apple-darwin14.1.0/libxml2/2.9.2\" -DNOKOGIRI_LIBXML2_PATCHES\=\"0001-Revert-Missing-initialization-for-the-catalog-module.patch\ 0002-Fix-missing-entities-after-CVE-2014-3660-fix.patch\" -DNOKOGIRI_LIBXSLT_PATH\=\"/Users/janicemin/Desktop/project3-canborrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-apple-darwin14.1.0/libxslt/1.1.28\" -DNOKOGIRI_LIBXSLT_PATCHES\=\"0001-Adding-doc-update-related-to-1.1.28.patch\ 0002-Fix-a-couple-of-places-where-f-printf-parameters-wer.patch\ 0003-Initialize-pseudo-random-number-generator-with-curre.patch\ 0004-EXSLT-function-str-replace-is-broken-as-is.patch\ 0006-Fix-str-padding-to-work-with-UTF-8-strings.patch\ 0007-Separate-function-for-predicate-matching-in-patterns.patch\ 0008-Fix-direct-pattern-matching.patch\ 0009-Fix-certain-patterns-with-predicates.patch\ 0010-Fix-handling-of-UTF-8-strings-in-EXSLT-crypto-module.patch\ 0013-Memory-leak-in-xsltCompileIdKeyPattern-error-path.patch\ 0014-Fix-for-bug-436589.patch\ 0015-Fix-mkdir-for-mingw.patch\"
 CXXFLAGS = $(CCDLFLAGS) $(cxxflags) $(ARCH_FLAG)
-ldflags  = -L. -L/home/kchiu/.rbenv/versions/2.2.2/lib  -fstack-protector -rdynamic -Wl,-export-dynamic
-dldflags =  
+ldflags  = -L. -fstack-protector -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib 
+dldflags = -Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib  
 ARCH_FLAG = 
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
-LDSHARED = $(CC) -shared
-LDSHAREDXX = $(CXX) -shared
+LDSHARED = $(CC) -dynamic -bundle
+LDSHAREDXX = $(CXX) -dynamic -bundle
 AR = ar
 EXEEXT = 
 
 RUBY_INSTALL_NAME = $(RUBY_BASE_NAME)
-RUBY_SO_NAME = ruby
+RUBY_SO_NAME = ruby.2.2.0
 RUBYW_INSTALL_NAME = 
 RUBY_VERSION_NAME = $(RUBY_BASE_NAME)-$(ruby_version)
 RUBYW_BASE_NAME = rubyw
 RUBY_BASE_NAME = ruby
 
-arch = x86_64-linux
+arch = x86_64-darwin14
 sitearch = $(arch)
 ruby_version = 2.2.0
 ruby = $(bindir)/$(RUBY_BASE_NAME)
@@ -109,8 +109,8 @@ ruby_headers = $(hdrdir)/ruby.h $(hdrdir)/ruby/ruby.h $(hdrdir)/ruby/defines.h $
 
 RM = rm -f
 RM_RF = $(RUBY) -run -e rm -- -rf
-RMDIRS = rmdir --ignore-fail-on-non-empty -p
-MAKEDIRS = /bin/mkdir -p
+RMDIRS = rmdir -p
+MAKEDIRS = mkdir -p
 INSTALL = /usr/bin/install -c
 INSTALL_PROG = $(INSTALL) -m 0755
 INSTALL_DATA = $(INSTALL) -m 644
@@ -121,8 +121,8 @@ TOUCH = exit >
 
 preload = 
 
-libpath = /media/windows/nginx/www/can-borrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-unknown-linux-gnu/libxml2/2.9.2/lib /media/windows/nginx/www/can-borrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-unknown-linux-gnu/libxslt/1.1.28/lib . $(libdir)
-LIBPATH =  -L/media/windows/nginx/www/can-borrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-unknown-linux-gnu/libxml2/2.9.2/lib -Wl,-R/media/windows/nginx/www/can-borrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-unknown-linux-gnu/libxml2/2.9.2/lib -L/media/windows/nginx/www/can-borrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-unknown-linux-gnu/libxslt/1.1.28/lib -Wl,-R/media/windows/nginx/www/can-borrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-unknown-linux-gnu/libxslt/1.1.28/lib -L. -L$(libdir) -Wl,-R$(libdir)
+libpath = /Users/janicemin/Desktop/project3-canborrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-apple-darwin14.1.0/libxml2/2.9.2/lib /Users/janicemin/Desktop/project3-canborrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-apple-darwin14.1.0/libxslt/1.1.28/lib /usr/local/opt/libyaml/lib /usr/local/opt/readline/lib /usr/local/opt/libksba/lib /usr/local/opt/openssl/lib . $(libdir)
+LIBPATH =  -L/Users/janicemin/Desktop/project3-canborrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-apple-darwin14.1.0/libxml2/2.9.2/lib -L/Users/janicemin/Desktop/project3-canborrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-apple-darwin14.1.0/libxslt/1.1.28/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib -L. -L$(libdir)
 DEFFILE = 
 
 CLEANFILES = mkmf.log
@@ -133,15 +133,15 @@ extout =
 extout_prefix = 
 target_prefix = /nokogiri
 LOCAL_LIBS = 
-LIBS =  /media/windows/nginx/www/can-borrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-unknown-linux-gnu/libxslt/1.1.28/lib/libexslt.a -lm -ldl -lz /media/windows/nginx/www/can-borrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-unknown-linux-gnu/libxml2/2.9.2/lib/libxml2.a /media/windows/nginx/www/can-borrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-unknown-linux-gnu/libxslt/1.1.28/lib/libxslt.a -ldl -lm -lz /media/windows/nginx/www/can-borrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-unknown-linux-gnu/libxml2/2.9.2/lib/libxml2.a -lpthread -ldl -lcrypt -lm   -lc 
-ORIG_SRCS = html_document.c html_element_description.c html_entity_lookup.c html_sax_parser_context.c html_sax_push_parser.c nokogiri.c xml_attr.c xml_cdata.c xml_comment.c xml_document.c xml_document_fragment.c xml_dtd.c xml_element_content.c xml_element_decl.c xml_encoding_handler.c xml_entity_reference.c xml_io.c xml_libxml2_hacks.c xml_namespace.c xml_node.c xml_node_set.c xml_processing_instruction.c xml_reader.c xml_sax_parser.c xml_sax_parser_context.c xml_sax_push_parser.c xml_schema.c xml_syntax_error.c xml_text.c xml_xpath_context.c xslt_stylesheet.c xml_attribute_decl.c xml_entity_decl.c xml_relax_ng.c
+LIBS = $(LIBRUBYARG_SHARED) /Users/janicemin/Desktop/project3-canborrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-apple-darwin14.1.0/libxslt/1.1.28/lib/libexslt.a -lm -liconv -lpthread -lz /Users/janicemin/Desktop/project3-canborrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-apple-darwin14.1.0/libxml2/2.9.2/lib/libxml2.a /Users/janicemin/Desktop/project3-canborrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-apple-darwin14.1.0/libxslt/1.1.28/lib/libxslt.a -lm -liconv -lpthread -lz /Users/janicemin/Desktop/project3-canborrow/vendor/bundle/ruby/2.2.0/gems/nokogiri-1.6.6.2/ports/x86_64-apple-darwin14.1.0/libxml2/2.9.2/lib/libxml2.a -llzma -lpthread -ldl -lobjc  
+ORIG_SRCS = html_document.c html_element_description.c html_entity_lookup.c html_sax_parser_context.c html_sax_push_parser.c nokogiri.c xml_attr.c xml_attribute_decl.c xml_cdata.c xml_comment.c xml_document.c xml_document_fragment.c xml_dtd.c xml_element_content.c xml_element_decl.c xml_encoding_handler.c xml_entity_decl.c xml_entity_reference.c xml_io.c xml_libxml2_hacks.c xml_namespace.c xml_node.c xml_node_set.c xml_processing_instruction.c xml_reader.c xml_relax_ng.c xml_sax_parser.c xml_sax_parser_context.c xml_sax_push_parser.c xml_schema.c xml_syntax_error.c xml_text.c xml_xpath_context.c xslt_stylesheet.c
 SRCS = $(ORIG_SRCS) 
-OBJS = html_document.o html_element_description.o html_entity_lookup.o html_sax_parser_context.o html_sax_push_parser.o nokogiri.o xml_attr.o xml_cdata.o xml_comment.o xml_document.o xml_document_fragment.o xml_dtd.o xml_element_content.o xml_element_decl.o xml_encoding_handler.o xml_entity_reference.o xml_io.o xml_libxml2_hacks.o xml_namespace.o xml_node.o xml_node_set.o xml_processing_instruction.o xml_reader.o xml_sax_parser.o xml_sax_parser_context.o xml_sax_push_parser.o xml_schema.o xml_syntax_error.o xml_text.o xml_xpath_context.o xslt_stylesheet.o xml_attribute_decl.o xml_entity_decl.o xml_relax_ng.o
+OBJS = html_document.o html_element_description.o html_entity_lookup.o html_sax_parser_context.o html_sax_push_parser.o nokogiri.o xml_attr.o xml_attribute_decl.o xml_cdata.o xml_comment.o xml_document.o xml_document_fragment.o xml_dtd.o xml_element_content.o xml_element_decl.o xml_encoding_handler.o xml_entity_decl.o xml_entity_reference.o xml_io.o xml_libxml2_hacks.o xml_namespace.o xml_node.o xml_node_set.o xml_processing_instruction.o xml_reader.o xml_relax_ng.o xml_sax_parser.o xml_sax_parser_context.o xml_sax_push_parser.o xml_schema.o xml_syntax_error.o xml_text.o xml_xpath_context.o xslt_stylesheet.o
 HDRS = $(srcdir)/html_document.h $(srcdir)/html_element_description.h $(srcdir)/html_entity_lookup.h $(srcdir)/html_sax_parser_context.h $(srcdir)/html_sax_push_parser.h $(srcdir)/nokogiri.h $(srcdir)/xml_attr.h $(srcdir)/xml_attribute_decl.h $(srcdir)/xml_cdata.h $(srcdir)/xml_comment.h $(srcdir)/xml_document.h $(srcdir)/xml_document_fragment.h $(srcdir)/xml_dtd.h $(srcdir)/xml_element_content.h $(srcdir)/xml_element_decl.h $(srcdir)/xml_encoding_handler.h $(srcdir)/xml_entity_decl.h $(srcdir)/xml_entity_reference.h $(srcdir)/xml_io.h $(srcdir)/xml_libxml2_hacks.h $(srcdir)/xml_namespace.h $(srcdir)/xml_node.h $(srcdir)/xml_node_set.h $(srcdir)/xml_processing_instruction.h $(srcdir)/xml_reader.h $(srcdir)/xml_relax_ng.h $(srcdir)/xml_sax_parser.h $(srcdir)/xml_sax_parser_context.h $(srcdir)/xml_sax_push_parser.h $(srcdir)/xml_schema.h $(srcdir)/xml_syntax_error.h $(srcdir)/xml_text.h $(srcdir)/xml_xpath_context.h $(srcdir)/xslt_stylesheet.h
 TARGET = nokogiri
 TARGET_NAME = nokogiri
 TARGET_ENTRY = Init_$(TARGET_NAME)
-DLLIB = $(TARGET).so
+DLLIB = $(TARGET).bundle
 EXTSTATIC = 
 STATIC_LIB = 
 
@@ -154,7 +154,7 @@ HDRDIR        = $(rubyhdrdir)/ruby$(target_prefix)
 ARCHHDRDIR    = $(rubyhdrdir)/$(arch)/ruby$(target_prefix)
 
 TARGET_SO     = $(DLLIB)
-CLEANLIBS     = $(TARGET).so 
+CLEANLIBS     = $(TARGET).bundle 
 CLEANOBJS     = *.o  *.bak
 
 all:    $(DLLIB)
@@ -253,6 +253,7 @@ $(DLLIB): $(OBJS) Makefile
 	$(ECHO) linking shared-object nokogiri/$(DLLIB)
 	-$(Q)$(RM) $(@)
 	$(Q) $(LDSHARED) -o $@ $(OBJS) $(LIBPATH) $(DLDFLAGS) $(LOCAL_LIBS) $(LIBS)
+	$(Q) $(POSTLINK)
 
 
 
