@@ -1,37 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Canborrow2</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<head>
+		<title>Canborrow2</title>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
-  <!--<%= csrf_meta_tags %>-->
+		<!--<%= csrf_meta_tags %>-->
 
-  <link href='http://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
-  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-  <link type="text/css" rel="stylesheet" href="css/style.css">
-</head>
-<body>
-	<div id = "sign in">
-	<% if user_signed_in? %>
-	  <%= "Welcome, #{current_user.email}." %>
-	  <%= link_to "My Profile", profile_path(current_user.profile) %>
-		<%= button_to "Sign Out", destroy_user_session_path, :method => "delete" %>
-	<% else %>
-	  <%= link_to "Log In", new_user_session_path %>
-	<% end %>
-</div>
+		<link href='http://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
+		<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<div id = "sign in">
+		<% if user_signed_in? %>
+			<%= "Welcome, #{current_user.email}." %>
+			<%= link_to "My Profile", profile_path(current_user.profile) %>
+			<%= button_to "Sign Out", destroy_user_session_path, :method => "delete" %>
+		<% else %>
+			<%= link_to "Log In", new_user_session_path %>
+		<% end %>
+	</div>
 
-<!-- jQuery is required by Materialize to function -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="js/materialize.min.js"></script>
-  <script type="text/javascript">
-    //custom JS code
-  </script>
-  
 	<%= yield %>
-
-
-
-</body>
+	</body>
 </html>

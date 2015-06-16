@@ -10,44 +10,44 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery.min
 //= require jquery-ui.min
 //= require jquery_ujs
 //= require turbolinks
 //= require materialize-sprockets
+//= require materialize.min
 //= require_tree .
 
-
 $(function() {
-		var params = {};
+  var params = {};
 
-		$( ".draggable" ).draggable({ 
-			snap: true,
-			drag: function() {
-				params = {
-					closet: {
-						profile_id: $('#garment').data('profile-id'),
-						name: $(this).data('closet'),
-						garment_id: $(this).data('garment-id')
-					}
-				};
-			}
-		});
+  $( ".draggable" ).draggable({ 
+    snap: true,
+    drag: function() {
+      params = {
+        closet: {
+          profile_id: $('#garment').data('profile-id'),
+          name: $(this).data('closet'),
+          garment_id: $(this).data('garment-id')
+        }
+      };
+    }
+  });
 
-		$( ".column-style" ).droppable({
-			activeClass: "ui-state-default",
-			hoverClass: "ui-state-hover",
-			drop: function( event, ui ) {
-				var $drag = $(this),
-						profileID = $('#garment').data('profile-id');
+  $( ".column-style" ).droppable({
+    activeClass: "ui-state-default",
+    hoverClass: "ui-state-hover",
+    drop: function( event, ui ) {
+      var $drag = $(this),
+          profileID = $('#garment').data('profile-id');
 
-				$.ajax({
-					method: "post",
-					url: '/closets/'+profileID+'/update/',
-					data: $.param(params)
-				}).done(function(response, status, request){
-  console.dir(request);
+      $.ajax({
+        method: "post",
+        url: '/closets/'+profileID+'/update/',
+        data: $.param(params)
+      }).done(function(response, status, request) {
+        console.dir(request);
+      });
+    }
+  });
 });
-			}
-		});
- });

@@ -1,42 +1,43 @@
 <div class = "outline column-style" data-index="1">
 
 <h1><%= @profile.closet.name %></h1>
+
 <div id = "choices">
-<h2>Here are your choices </h2>
+	<h2>Here are your choices </h2>
 </div>
+
 <div id="garment" class= "garment" data-profile-id="<%=params[:id]%>">
 <% @profile.closet.garments.each do |garment| %>
-<%= button_to "borrow", borrows_path(borrow: { garment_id: garment.id}) %>
-<% garment_url = garment.garment_url %>
-<% image_url = garment.background_url %>
+	<%= button_to "borrow", borrows_path(borrow: { garment_id: garment.id}) %>
+	<% garment_url = garment.garment_url %>
+	<% image_url = garment.background_url %>
 
-<img class="draggable" src="<%=image_url%>" data-closet="<%=@closet.name%>" data-garment-id="<%=garment.id%>" />
-<%#= image_tag(image_url, class: "draggable", "data-garment-id": garment.id, "data-name": 'hi') %>
+	<img class="draggable" src="<%=image_url%>" data-closet="<%=@closet.name%>" data-garment-id="<%=garment.id%>" />
+	<%#= image_tag(image_url, class: "draggable", "data-garment-id": garment.id, "data-name": 'hi') %>
 <% end %>
-</div>
-
 </div>
 
 <div class = "outline column-style" data-index="2">
 	<h1> Welcome <%= current_user.profile.name %></h1>
-	<h2> Drag items from your friend's closet to this box to borrow!<h2>
-		
+	<h2> Drag items from your friend's closet to this box to borrow!</h2>
 </div>
 
-<br>
-<br>
-<br>
+<br />
+<br />
+<br />
+
 <div id = "back-to-closet">
-<%= link_to 'Go Back to Different Closets!', profiles_path %>
+	<%= link_to 'Go Back to Different Closets!', profiles_path %>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<br>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
 <div id = "form">
 	<%= render 'form' %>
 </div>
