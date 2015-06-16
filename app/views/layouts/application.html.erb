@@ -8,6 +8,8 @@
   <!--<%= csrf_meta_tags %>-->
 
   <link href='http://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<div id = "sign in">
@@ -19,7 +21,17 @@
 	  <%= link_to "Log In", new_user_session_path %>
 	<% end %>
 </div>
+
+<!-- jQuery is required by Materialize to function -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript">
+    //custom JS code
+  </script>
+  
 	<%= yield %>
+
+
 
 </body>
 </html>

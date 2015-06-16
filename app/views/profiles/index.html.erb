@@ -1,5 +1,13 @@
-
 <h1> Can I Borrow That? </h1>
+
+<h2> All the Closets -- Go Ahead and Peruse! <h2>
+<br>
+<h1> <% @users = User.all %>
+<% @users.each do |user| %>
+<li><%= link_to user.profile.name, profile_path(user) %>
+<% end %> <h1>
+
+
 	<div id = "front-page"
 		<% Profile.all.each do |profile| %>
 			<br><%#= link_to profile.closet.name, profile %></br>
@@ -7,7 +15,7 @@
 	</div>
 
 <div class = "profile-add">
-<h1>Fill in Your Info</h1>
+<h1>Give Us More Info About Yourself!</h1>
 
 <%= form_for @profile do |f| %>
 	<%= f.label :name %>

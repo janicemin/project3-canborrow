@@ -18,17 +18,25 @@
 </div>
 
 <div class = "outline column-style" data-index="2">
-	<h1> Your Closet </h1>
-		<h2> Drag and drop away!</h2>
+	<h1> Welcome <%= current_user.profile.name %></h1>
+	<h2> Drag items from your friend's closet to this box to borrow!<h2>
+		
 </div>
 
-
+<br>
+<br>
 <br>
 <div id = "back-to-closet">
 <%= link_to 'Go Back to Different Closets!', profiles_path %>
 </div>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
+<br>
 <div id = "form">
 	<%= render 'form' %>
 </div>

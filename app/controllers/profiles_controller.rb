@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
 
 	def index
+		@users = User.all
 		@profiles = Profile.all
 		@profile = Profile.find(current_user.id)
 		@garment = Garment.new
