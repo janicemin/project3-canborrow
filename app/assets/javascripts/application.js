@@ -12,6 +12,7 @@
 //
 //= require jquery.min
 //= require jquery-ui.min
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
 //= require materialize-sprockets
@@ -44,7 +45,7 @@ $(function() {
       $.ajax({
         method: "post",
         url: '/closets/'+profileID+'/update/',
-        data: $.param(params)
+        data: params
       }).done(function(response, status, request) {
         console.dir(request);
       });

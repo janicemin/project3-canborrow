@@ -1,4 +1,9 @@
+@import "//fonts.googleapis.com/css?family=Monoton";
+
+@import "bootstrap.min";
 @import "materialize";
+
+body { background-color: #D1D1D1; }
 
 .profile-add {
 	text-align: center;
@@ -22,9 +27,7 @@
 	width: 50%;
 }
 
-* {
-	background-color: #D1D1D1;
-}
+/* * { background-color: #D1D1D1; } */
 
 h1 {
 	font-family:'Monoton', cursive;
@@ -65,12 +68,7 @@ h2 {
 	padding-bottom: 50px;
 }
 
-
-
-
-
-
-
+input[type="checkbox"] { border: 1px solid #9E9E9E; }
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
