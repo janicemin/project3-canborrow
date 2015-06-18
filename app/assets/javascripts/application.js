@@ -44,7 +44,7 @@ $(function() {
       $.ajax({
         method: "post",
         url: '/closets/'+profileID+'/update/',
-        data: $.param(params)
+        data: $params
       }).done(function(response, status, request) {
         console.dir(request);
       });

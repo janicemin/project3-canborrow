@@ -16,7 +16,7 @@ class BorrowsController < ApplicationController
 		@profile = Profile.find(current_user.id)
 		@borrow = @profile.borrows.new(borrow_params)
 		if @borrow.save
-			redirect_to borrows_url
+			redirect_to borrows_url(@profile)
 		else
 			render :new
 		end
