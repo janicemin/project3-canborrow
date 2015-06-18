@@ -29,6 +29,23 @@ class ClosetsController < ApplicationController
 		# closet_params.garment_id
 		@closet = Closet.find(params[:id])
 
+		if defined?(params[:closet][:garment_id])
+			@garment = Garment.find(params[:closet][:garment_id]);
+# Uncomment this for sanity check that the update is working this line:
+#			@garment.closet_id = 2;
+			@garment.closet_id = params[:id]
+			if @garment.save
+				render :text => TRUE
+			else 
+				render :text => FALSE
+			end
+
+			return
+		end
+
+render :text => params.inspect
+		#render :text => params.inspect
+return
 		if @closet.update(closet_params)
 			redirect_to profile_path(@closet.profile)
 		else
